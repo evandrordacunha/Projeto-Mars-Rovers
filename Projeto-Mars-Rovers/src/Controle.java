@@ -6,7 +6,7 @@ A letra M faz a sonda se mover para frente um quadro na grid sem mudar
 sua direção.
 Assuma que o quadro diretamente ao norte de (x, y) é (x, y+1).*/
 public class Controle {
-	
+
 	public Controle() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -44,21 +44,26 @@ public class Controle {
 		}
 	}
 
-	public void virar(char comando, MarsRovers sonda){
-		//Verifica se é válido o comando informado
-		if (comando != 'L' || comando != 'R'||comando != 'M') {
+	public void virar(char comando, MarsRovers sonda) {
+		// Verifica se é válido o comando informado
+		if (comando != 'L' || comando != 'R' || comando != 'M') {
 			try {
 				throw new Exception();
 			} catch (Exception e) {
-				 System.out.println("Comando não encontrado! " + e.getMessage());
-			}	
+				System.out.println("Comando não encontrado! " + e.getMessage());
+			}
 		}
-		//Verifica se o deslocamente será ao norte
-		if(sonda.getCoordenada() == Coordenadas.Norte.getCoordenada())	{
-			if(comando == 'L'){
+
+		if (sonda.getCoordenada() == Coordenadas.Norte.getCoordenada()
+				|| sonda.getCoordenada() == Coordenadas.Sul.getCoordenada()
+				|| sonda.getCoordenada() == Coordenadas.Leste.getCoordenada()
+				|| sonda.getCoordenada() == Coordenadas.Oeste.getCoordenada()) {
+			if (comando == 'L') {
+				sonda.setCoordenada(Coordenadas.Oeste.getCoordenada());
+			}
+			if (comando == 'R') {
 				sonda.setCoordenada(Coordenadas.Leste.getCoordenada());
 			}
 		}
 	}
-
 }

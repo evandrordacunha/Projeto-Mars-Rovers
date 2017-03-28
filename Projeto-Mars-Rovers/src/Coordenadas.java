@@ -1,6 +1,5 @@
 
-public enum Coordenadas {
-	
+public enum Coordenadas {	
 	Norte('N'),Sul('S'),Leste('L'),Oeste('O');
 	private char coordenada;
 
