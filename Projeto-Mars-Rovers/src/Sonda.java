@@ -1,8 +1,8 @@
 
-public class MarsRovers {
+public class Sonda {
 
 	private int pontoX, pontoY;
-	private char coordenada;
+	private char pontoC;
 	/**
 	 * @param pontoX
 	 *            - determina deslocamento para esquerda ou direita
@@ -11,55 +11,62 @@ public class MarsRovers {
 	 * @param coordenada
 	 *            - determina a cordenada (Norte/Sul/Leste/Oeste)
 	 */
-	public MarsRovers(int pontoX, int pontoY, char coordenada) {
-		this.pontoX = pontoX;
-		this.pontoY = pontoY;
-		this.coordenada = coordenada;
+	public Sonda(Coordenada c) {
+		this.pontoX = c.getPontoX();
+		this.pontoY = c.getPontoY();
+		this.pontoC = c.getPontoC();
 	}
-/**
-	 * @return the pontoX
-	 */
-	public int getPontoX() {
-		return pontoX;
+	public Sonda() {
+		this.pontoX = 0;
+		this.pontoY = 0;
+		this.pontoC = '0';
 	}
-	/**
-	 * @param pontoX the pontoX to set
-	 */
-	public void setPontoX(int pontoX) {
-		this.pontoX = pontoX;
+	
+	/*Método utilizado para rastreio da sonda*/
+	public String getCoordenada(){
+		Coordenada c = new Coordenada(pontoX, pontoY, pontoC);
+		return c.toString();
 	}
-	/**
-	 * @return the pontoY
-	 */
-	public int getPontoY() {
-		return pontoY;
+	public void setCoordenada(Coordenada c){
+		this.pontoX = c.getPontoX();
+		this.pontoY = c.getPontoY();
+		this.pontoC = c.getPontoC();
 	}
-	/**
-	 * @param pontoY the pontoY to set
-	 */
-	public void setPontoY(int pontoY) {
-		this.pontoY = pontoY;
+	
+	public void locomover(Coordenada c){
+		try {
+			if(c.getPontoC() != 'M'
+			||c.getPontoC() != 'L'
+			||c.getPontoC()!= 'R'
+			){		
+		}
+		} catch (IllegalArgumentException e) {
+			System.out.println("Coordenada inválida " +e.getMessage());
+		}
+		if(c.getPontoC() == 'M'){
+			int novoPonto = c.getPontoY();
+			System.out.println("Novo ponto "+novoPonto);
+			Coordenada novaCoordenada = new Coordenada(pontoX, (pontoY+novoPonto), pontoC);
+			setCoordenada(novaCoordenada);
+		}
+		else if(c.getPontoC() == 'L'){
+			int novoPonto = c.getPontoX();
+			System.out.println("Novo ponto "+novoPonto);
+			Coordenada novaCoordenada = new Coordenada((pontoX-novoPonto), pontoY, pontoC);
+			setCoordenada(novaCoordenada);
+		}
+		else if(c.getPontoC() == 'R'){
+			int novoPonto = c.getPontoX();
+			System.out.println("Novo ponto "+novoPonto);
+			Coordenada novaCoordenada = new Coordenada((pontoX+novoPonto), pontoY, pontoC);
+			setCoordenada(novaCoordenada);
+		}
+		
 	}
-	/**
-	 * @return the coordenada
-	 */
-	public char getCoordenada() {
-		return coordenada;
-	}
-	/**
-	 * @param coordenada the coordenada to set
-	 */
-	public void setCoordenada(char coordenada) {
-		this.coordenada = coordenada;
-	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+
 	@Override
 	public String toString() {
-		String s = "Localização: " +getPontoX() +","
-					+""+getPontoY() +","
-					+""+getCoordenada();
+		String s = "Mars Rovers Localizada nas coordenadas : " +" ( " +pontoX +" "+pontoY +" "+pontoC +" ) ";
 		return s;
 	}
 	
