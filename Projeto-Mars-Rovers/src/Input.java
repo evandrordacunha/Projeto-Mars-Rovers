@@ -3,45 +3,71 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
+import javax.swing.text.html.HTMLDocument.Iterator;
 import javax.xml.transform.Source;
 
-public class Aplicacao {
+public class Input {
+	
+	static Direcao dir;
+	static Planalto p;
+	Sonda s;
+	 
+	
 	
 	public static void main(String[] args) {
-		ler();
+		//ler();
 	}
 
+	
+	/*
 	private static void ler() {
-		 
-		
+		char com;
+		p = new Planalto(10);
+		 Map<Character,Integer> map = new HashMap<Character,Integer>();
 		try {
 			BufferedReader buff = new BufferedReader(new FileReader("arquivo.txt"));
+			 StringBuffer string = new StringBuffer();
 			String line = null;
-			try {
+			
 				line = buff.readLine();
 				String[] dados;
-				Sonda sonda = new Sonda();
+				
 				while (line != null) {
 					dados = line.split(" ");
 					line = buff.readLine();
-					int x = Integer.parseInt(dados[0]);
-					int y = Integer.parseInt(dados[1]);
-					char c = dados[2].charAt(0);
-					System.out.println("Dados Pos: " +x +" "+y +" "+ c);
-					Coordenada coordenada = new Coordenada(x, y, c);
-					sonda.setCoordenada(coordenada);
-					sonda.locomover(coordenada);
-					System.out.println(sonda +"\n");
-					System.out.println(sonda.toString());
+					 string.append(line);
 				}
-			} finally {
-				buff.close();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+				  for (int i = 0; i < string.length(); i++)
+			            if (map.get(string.charAt(i)) == null)
+			                map.put(string.charAt(i), 1);
+			            else
+			                map.put(string.charAt(i), map.get(string.charAt(i)) + 1);
+			        // Imprime a quantidade de Cada letra
+			        Object[] a = map.keySet().toArray();
+			        Iterator i =  (Iterator) map.values().iterator();
+			        int totalCaracteres = 0;
+			        for (int j = 0; j < a.length; j++) {
+			           totalCaracteres++;
+			        }
+			        
+			        for(int k = 0; k <totalCaracteres;k++){
+			        	 com = dados[k].charAt(0);
+			        	
+			        }
+			       // Sonda sonda  = new Sonda(p, 0, 0, dir, com);
+					
+					
+		
 
 	}
+	
+	
+	private static void verificarInstrucao(Sonda s){
+		
+	}
+	*/
 }
